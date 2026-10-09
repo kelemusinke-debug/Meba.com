@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meba Bahakal — Web Creator</title>
+<meta name="description" content="Meba Bahakal — creative web designer and website creator. Modern, responsive websites built to make ideas stand out.">
+<style>
+:root{
+  --bg:#07080c; --panel:#101219; --panel2:#151822; --text:#f5f7fb; --muted:#9ba2b2;
+  --line:rgba(255,255,255,.09); --accent:#8b5cf6; --accent2:#22d3ee;
+  --radius:24px; --max:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.container{width:min(var(--max),calc(100% - 40px));margin:auto}
+body:before{
+ content:"";position:fixed;inset:-20%;z-index:-2;
+ background:radial-gradient(circle at 20% 20%,rgba(139,92,246,.15),transparent 28%),
+ radial-gradient(circle at 80% 30%,rgba(34,211,238,.10),transparent 25%),
+ radial-gradient(circle at 50% 90%,rgba(139,92,246,.08),transparent 30%);
+}
+body:after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.22;
+background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+background-size:48px 48px;mask-image:linear-gradient(to bottom,#000,transparent 80%)}
+nav{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.logo{font-weight:800;letter-spacing:-.04em;font-size:1.25rem}
+.logo span{color:var(--accent2)}
+.navlinks{display:flex;gap:30px;color:#c8ccd5;font-size:.94rem}
+.navlinks a{transition:.2s}.navlinks a:hover{color:white}
+.menu{display:none;background:none;border:0;color:white;font-size:1.5rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 19px;border-radius:999px;border:1px solid var(--line);font-weight:700;font-size:.92rem;transition:.25s;cursor:pointer}
+.btn.primary{background:white;color:#08090d;border-color:white}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,255,255,.12)}
+.btn.ghost:hover{background:rgba(255,255,255,.06);transform:translateY(-2px)}
+.hero{min-height:calc(100vh - 78px);display:grid;place-items:center;padding:90px 0 70px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
+.kicker{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid var(--line);background:rgba(255,255,255,.035);border-radius:999px;color:#cdd2dc;font-size:.82rem;margin-bottom:24px}
+.dot{width:7px;height:7px;border-radius:50%;background:#5eead4;box-shadow:0 0 14px #5eead4}
+h1{font-size:clamp(3.4rem,8vw,7rem);line-height:.91;letter-spacing:-.075em;max-width:850px}
+.gradient{background:linear-gradient(110deg,#fff 20%,#bca7ff 52%,#67e8f9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:1.15rem;color:var(--muted);max-width:650px;margin:28px 0 32px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-card{position:relative;min-height:480px;border:1px solid var(--line);border-radius:32px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.015));overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.orb{position:absolute;width:230px;height:230px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));filter:blur(1px);top:55px;right:55px;opacity:.82;box-shadow:0 0 100px rgba(139,92,246,.4)}
+.hero-card .window{position:absolute;left:35px;right:35px;bottom:35px;top:145px;border:1px solid rgba(255,255,255,.14);border-radius:18px;background:#0a0b10;backdrop-filter:blur(12px);padding:18px;transform:rotate(-3deg)}
+.dots{display:flex;gap:6px}.dots i{width:7px;height:7px;border-radius:50%;background:#444}
+.code{margin-top:25px;color:#8e96a8;font:12px/2.1 ui-monospace,SFMono-Regular,Menlo,monospace}.code b{color:#bda9ff}.code em{color:#67e8f9;font-style:normal}
+.floating{position:absolute;right:18px;top:20px;padding:9px 12px;border:1px solid var(--line);background:#171922;border-radius:12px;font-size:.75rem;color:#dfe2ea}
+section{padding:110px 0}.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:45px}
+.eyebrow{color:#9f8cff;text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;font-weight:800;margin-bottom:10px}
+h2{font-size:clamp(2.2rem,5vw,4rem);line-height:1;letter-spacing:-.055em}
+.section-head p{color:var(--muted);max-width:420px}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,.035);padding:28px;transition:.3s}
+.card:hover{transform:translateY(-5px);background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.16)}
+.icon{width:45px;height:45px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(139,92,246,.22),rgba(34,211,238,.12));margin-bottom:26px;font-size:1.25rem}
+.card h3{font-size:1.2rem;margin-bottom:10px}.card p{color:var(--muted);font-size:.94rem}
+.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.project{min-height:360px;border:1px solid var(--line);border-radius:28px;overflow:hidden;background:var(--panel);position:relative}
+.project-visual{height:260px;position:relative;overflow:hidden;background:linear-gradient(135deg,#17122a,#0c2028)}
+.project:nth-child(2) .project-visual{background:linear-gradient(135deg,#17221f,#101521)}
+.project:nth-child(3) .project-visual{background:linear-gradient(135deg,#24171d,#111018)}
+.project:nth-child(4) .project-visual{background:linear-gradient(135deg,#111c2d,#19132a)}
+.project-visual:before{content:"";position:absolute;width:65%;height:140%;left:20%;top:-25%;border-radius:30px;background:rgba(255,255,255,.08);transform:rotate(18deg);box-shadow:0 0 100px rgba(139,92,246,.2)}
+.mock{position:absolute;left:12%;right:12%;top:22%;height:60%;border:1px solid rgba(255,255,255,.16);background:rgba(4,5,8,.75);border-radius:14px;padding:14px;box-shadow:0 25px 50px rgba(0,0,0,.35)}
+.mockbar{height:7px;width:35%;background:#777;border-radius:5px;margin-bottom:18px;opacity:.6}.mockline{height:9px;width:78%;background:#ddd;border-radius:5px;margin:9px 0;opacity:.8}.mockline.small{width:48%;opacity:.35}
+.project-info{padding:20px 22px;display:flex;justify-content:space-between;align-items:end}.project-info p{color:var(--muted);font-size:.8rem;margin-top:4px}.arrow{font-size:1.2rem}
+.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}.about-copy p{color:var(--muted);font-size:1.06rem;margin:20px 0}.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.fact{padding:22px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.03)}.fact strong{font-size:2rem;display:block}.fact span{color:var(--muted);font-size:.86rem}
+.contact{border:1px solid var(--line);border-radius:32px;padding:55px;background:linear-gradient(120deg,rgba(139,92,246,.12),rgba(34,211,238,.05) 55%,rgba(255,255,255,.025))}
+.contact-grid{display:grid;grid-template-columns:1fr .8fr;gap:50px}.contact p{color:var(--muted);max-width:600px;margin:18px 0 28px}.contact-list{display:grid;gap:12px}.contact-list a{padding:14px 16px;border:1px solid var(--line);border-radius:14px;color:#d9dce5;background:rgba(0,0,0,.12)}.contact-list a:hover{border-color:rgba(255,255,255,.22)}
+footer{padding:35px 0;border-top:1px solid var(--line);color:#747b8b;font-size:.84rem;display:flex;justify-content:space-between}
+.reveal{opacity:0;transform:translateY(20px);transition:.7s}.reveal.show{opacity:1;transform:none}
+@media(max-width:850px){
+ .navlinks{display:none}.menu{display:block}.hero-grid,.about,.contact-grid{grid-template-columns:1fr}.hero{padding-top:60px}.hero-card{min-height:390px}.services{grid-template-columns:1fr}.work-grid{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:18px}.container{width:min(var(--max),calc(100% - 28px))}
+}
+@media(max-width:520px){h1{font-size:3.25rem}.hero-card{min-height:340px}.hero-card .window{left:20px;right:20px;bottom:20px}.orb{width:160px;height:160px;right:30px;top:55px}.contact{padding:30px 22px}.facts{grid-template-columns:1fr}section{padding:80px 0}}
+</style>
+</head>
+<body>
+<header>
+  <nav class="container">
+    <a class="logo" href="#">Meba<span>.</span></a>
+    <div class="navlinks">
+      <a href="#services">Services</a><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </div>
+    <a class="btn primary" href="#contact">Let's talk <span>↗</span></a>
+    <button class="menu" aria-label="Open menu">☰</button>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+ <div class="container hero-grid">
+  <div class="reveal">
+   <div class="kicker"><span class="dot"></span> Available for new projects</div>
+   <h1>Websites built to <span class="gradient">stand out.</span></h1>
+   <p>I'm <strong>Meba Bahakal</strong>, a website creator who turns ideas into clean, modern digital experiences that look great and feel effortless to use.</p>
+   <div class="actions"><a class="btn primary" href="#work">See my work ↓</a><a class="btn ghost" href="#contact">Start a project →</a></div>
+  </div>
+  <div class="hero-card reveal">
+   <div class="orb"></div><div class="floating">✦ Creative / Digital</div>
+   <div class="window"><div class="dots"><i></i><i></i><i></i></div>
+    <div class="code">
+      <div><b>const</b> creator = {</div>
+      <div>&nbsp;&nbsp;name: <em>"Meba Bahakal"</em>,</div>
+      <div>&nbsp;&nbsp;focus: <em>"great websites"</em>,</div>
+      <div>&nbsp;&nbsp;style: <em>"simple + bold"</em>,</div>
+      <div>&nbsp;&nbsp;mission: <em>"make ideas visible"</em></div>
+      <div>};</div><br>
+      <div><b>creator</b>.build(<em>"something amazing"</em>);</div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="services">
+ <div class="container">
+  <div class="section-head reveal"><div><div class="eyebrow">What I do</div><h2>From idea to<br>online.</h2></div><p>Everything needed to create a strong digital presence — from the first visual concept to a polished responsive website.</p></div>
+  <div class="services">
+   <article class="card reveal"><div class="icon">✦</div><h3>Web Design</h3><p>Clean, modern interfaces with thoughtful layouts, typography and visual direction.</p></article>
+   <article class="card reveal"><div class="icon">⌘</div><h3>Web Development</h3><p>Fast, responsive websites built with attention to performance and a smooth user experience.</p></article>
+   <article class="card reveal"><div class="icon">↗</div><h3>Landing Pages</h3><p>Focused pages designed to communicate your message clearly and turn visitors into action.</p></article>
+  </div>
+ </div>
+</section>
+
+<section id="work">
+ <div class="container">
+  <div class="section-head reveal"><div><div class="eyebrow">Selected work</div><h2>A few things<br>I can build.</h2></div><p>These sample projects show the range of styles and digital experiences Meba can create.</p></div>
+  <div class="work-grid">
+   <article class="project reveal"><div class="project-visual"><div class="mock"><div class="mockbar"></div><div class="mockline"></div><div class="mockline small"></div></div></div><div class="project-info"><div><h3>Nova Studio</h3><p>Creative agency website</p></div><span class="arrow">↗</span></div></article>
+   <article class="project reveal"><div class="project-visual"><div class="mock"><div class="mockbar"></div><div class="mockline"></div><div class="mockline small"></div></div></div><div class="project-info"><div><h3>Flow Finance</h3><p>Modern business landing page</p></div><span class="arrow">↗</span></div></article>
+   <article class="project reveal"><div class="project-visual"><div class="mock"><div class="mockbar"></div><div class="mockline"></div><div class="mockline small"></div></div></div><div class="project-info"><div><h3>Atelier</h3><p>Personal brand portfolio</p></div><span class="arrow">↗</span></div></article>
+   <article class="project reveal"><div class="project-visual"><div class="mock"><div class="mockbar"></div><div class="mockline"></div><div class="mockline small"></div></div></div><div class="project-info"><div><h3>Orbit</h3><p>Product launch experience</p></div><span class="arrow">↗</span></div></article>
+  </div>
+ </div>
+</section>
+
+<section id="about">
+ <div class="container about">
+  <div class="reveal"><div class="eyebrow">About Meba</div><h2>Design with purpose. Build with personality.</h2></div>
+  <div class="about-copy reveal"><p>Good websites do more than look good. They make a first impression, explain what matters and guide people toward the next step.</p><p>My approach is simple: understand the idea, remove the unnecessary, then build an experience that feels distinctive and easy to use.</p>
+   <div class="facts"><div class="fact"><strong>01</strong><span>Understand the idea</span></div><div class="fact"><strong>02</strong><span>Shape the experience</span></div><div class="fact"><strong>03</strong><span>Build the details</span></div><div class="fact"><strong>04</strong><span>Launch with confidence</span></div></div>
+  </div>
+ </div>
+</section>
+
+<section id="contact">
+ <div class="container">
+  <div class="contact reveal">
+   <div class="contact-grid">
+    <div><div class="eyebrow">Have an idea?</div><h2>Let's make it<br><span class="gradient">real.</span></h2><p>Tell me what you're building, what you need, or simply where you want to start. Great websites start with a conversation.</p><a class="btn primary" href="mailto:Mirafkel@gmail.com">Email Meba ↗</a></div>
+    <div class="contact-list">
+      <a href="mailto:Mirafkel@gmail.com">✉ &nbsp; Mirafkel@gmail.com</a>
+      <a href="#work">↗ &nbsp; View selected work</a>
+      <a href="#services">✦ &nbsp; Explore services</a>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer class="container"><span>© 2026 Meba Bahakal</span><span>Built with intention.</span></footer>
+<script>
+const observer = new IntersectionObserver(entries=>{
+ entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')})
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+const menu=document.querySelector('.menu'), links=document.querySelector('.navlinks');
+menu.addEventListener('click',()=>{links.style.display=links.style.display==='flex'?'none':'flex';links.style.position='absolute';links.style.top='78px';links.style.left='0';links.style.right='0';links.style.padding='20px';links.style.background='#08090d';links.style.flexDirection='column';links.style.borderBottom='1px solid rgba(255,255,255,.09)'});
+</script>
+</body>
+</html>
